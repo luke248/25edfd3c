@@ -1,0 +1,9 @@
+{
+  "name": "request-counter",
+  "version": "1.0.0",
+  "description": "HTTP request counter",
+  "main": "http.js",
+  "scripts": {    
+    "start": "node http.js"
+  }
+}
