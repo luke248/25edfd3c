@@ -12,7 +12,7 @@ node {
 	
 	stage('Build Image') {
 		echo 'building image'
-		app = docker.build("luke248/request-counter:${env.BUILD_NUMBER}", "./http/Dockerfile")		
+		app = docker.build("luke248/request-counter:${env.BUILD_NUMBER}", "./http")		
 	}
 	
 	stage('Test Image') {
