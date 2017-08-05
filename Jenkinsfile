@@ -21,8 +21,7 @@ node {
 	
 	stage('Publish Image') {
 		echo 'publishing image'
-		docker.withRegistry('https://registry.hub.docker.com/v1/repositories/luke248/private/', 'docker-hub-credentials') {
-            image.push("${env.BUILD_NUMBER}")
+		docker.withRegistry('https://registry.hub.docker.com/v1/repositories/', 'docker-credentials') {
             image.push("latest")
 		}       
 	}
