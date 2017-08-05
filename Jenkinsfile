@@ -1,30 +1,38 @@
 pipeline {
     agent any
+	def app
 
     stages {
-        stage('Build') {
+        stage('Build App') {
             steps {
-                echo 'Building..'
+                echo 'building app ' 
+				checkout scm
             }
         }
-        stage('Test') {
+        stage('Test App') {
             steps {
-                echo 'Testing..'
+                echo 'testing app'
             }
         }
-	stage('Dockerize') {
+		stage('Build Image') {
             steps {
-                echo 'Dockerizing'
+                echo 'building image'
+                app = docker.build("luke248/request-counter:${env.BUILD_NUMBER}", "./http/Dockerfile")
             }
         }
-	stage('Publish') {
+        stage('Test Image') {
             steps {
-                echo 'Publishing'
+                echo 'testing image'                
             }
         }
-        stage('Deploy') {
+		stage('Publish Image') {
             steps {
-                echo 'Deploying'
+                echo 'publishing image'
+            }
+        }
+        stage('Deploy Image') {
+            steps {
+                echo 'deploying image'
             }
         }
     }
