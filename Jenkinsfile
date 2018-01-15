@@ -12,7 +12,7 @@ node {
 	
 	stage('Build Image') {
 		echo 'building image'
-		image = docker.build("luke248/request-counter:${env.BUILD_NUMBER}", "./http")		
+		image = docker.build("luke248/request-counter:0.0.${env.BUILD_NUMBER}", "./http")		
 	}
 	
 	stage('Test Image') {
@@ -22,7 +22,8 @@ node {
 	stage('Publish Image') {
 		echo 'publishing image'
 		docker.withRegistry('https://registry.hub.docker.com/v1/repositories/', 'docker-credentials') {
-            image.push("latest")
+			image.push("0.0.${env.BUILD_NUMBER}");
+            		image.push("latest")
 		}       
 	}
 	
